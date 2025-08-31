@@ -7,10 +7,14 @@
 <div class="auth-container">
 	<div class="auth-panel">
 		<div class="text-center mb-4">
-			<div class="feature-icon mx-auto mb-3" style="width: 60px; height: 60px;">
-				<i class="fas fa-user-plus"></i>
-			</div>
-			<h2>Join the Competition</h2>
+			<a href="{{ url_for('views.static_html', route='/') }}" class="navbar-brand">
+            {% if Configs.ctf_logo %}
+                <img class="img-responsive ctf_logo" src="{{ url_for('views.files', path=Configs.ctf_logo) }}" height="25" alt="{{ Configs.ctf_name }}">
+            {% else %}
+                {{ Configs.ctf_name }}
+            {% endif %}
+        </a>
+			<hr>
 			<p class="text-secondary">Create your account to start competing</p>
 		</div>
 		
