@@ -1,0 +1,146 @@
+/* No Blink CSS - Disables all blinking and pulsing animations */
+
+/* Global animation disables */
+*,
+*::before,
+*::after {
+  /* Disable all CSS animations */
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  animation-fill-mode: none !important;
+  animation-play-state: paused !important;
+  
+  /* Disable webkit animations */
+  -webkit-animation-duration: 0s !important;
+  -webkit-animation-delay: 0s !important;
+  -webkit-animation-iteration-count: 1 !important;
+  -webkit-animation-fill-mode: none !important;
+  -webkit-animation-play-state: paused !important;
+  
+  /* Disable moz animations */
+  -moz-animation-duration: 0s !important;
+  -moz-animation-delay: 0s !important;
+  -moz-animation-iteration-count: 1 !important;
+  -moz-animation-fill-mode: none !important;
+  -moz-animation-play-state: paused !important;
+}
+
+/* Specifically target common blinking classes */
+.blink,
+.blinking,
+.pulse,
+.pulsing,
+.flash,
+.flashing,
+.glow,
+.glowing,
+.fa-spin,
+.fa-pulse,
+.cm-animate-fat-cursor,
+.cm-fat-cursor-mark,
+.spinner,
+.loading,
+.bounce,
+.bouncing {
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+}
+
+/* Remove keyframe animations that cause blinking */
+@keyframes blink { 0%, 100% { opacity: 1; } }
+@-webkit-keyframes blink { 0%, 100% { opacity: 1; } }
+@-moz-keyframes blink { 0%, 100% { opacity: 1; } }
+
+@keyframes pulse { 0%, 100% { opacity: 1; } }
+@-webkit-keyframes pulse { 0%, 100% { opacity: 1; } }
+@-moz-keyframes pulse { 0%, 100% { opacity: 1; } }
+
+@keyframes flash { 0%, 100% { opacity: 1; } }
+@-webkit-keyframes flash { 0%, 100% { opacity: 1; } }
+@-moz-keyframes flash { 0%, 100% { opacity: 1; } }
+
+@keyframes fa-spin { 0%, 100% { transform: rotate(0deg); } }
+@-webkit-keyframes fa-spin { 0%, 100% { transform: rotate(0deg); } }
+@-moz-keyframes fa-spin { 0%, 100% { transform: rotate(0deg); } }
+
+/* CodeMirror specific overrides */
+.CodeMirror .cm-animate-fat-cursor,
+.CodeMirror .cm-fat-cursor-mark {
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+}
+
+/* Font Awesome overrides */
+.fa-spin,
+.fas.fa-spin,
+.far.fa-spin,
+.fab.fa-spin,
+.fal.fa-spin {
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  transform: none !important;
+}
+
+.fa-pulse,
+.fas.fa-pulse,
+.far.fa-pulse,
+.fab.fa-pulse,
+.fal.fa-pulse {
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+}
+
+/* Override any remaining spinner animations */
+.spinner-border,
+.spinner-grow,
+.progress-bar-animated {
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+}
+
+/* CSS cursor blink disable */
+.cursor-blink,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+  caret-color: transparent;
+}
+
+/* Restore caret for better UX but without blinking */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  caret-color: #4fd1c7;
+}
+
+/* Allow only essential transitions for better UX */
+.btn,
+.card,
+.nav-link,
+.form-control,
+a,
+button {
+  transition: all 0.2s ease !important;
+  -webkit-transition: all 0.2s ease !important;
+  -moz-transition: all 0.2s ease !important;
+}
+
+/* Media query to respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

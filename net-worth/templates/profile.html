@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="page-header">
+        <h1>Profile</h1>
+        <div class="header-line"></div>
+    </div>
+
+    <div class="profile-content">
+        <!-- User Info Panel -->
+        <div class="profile-panel">
+            <div class="d-flex align-items-center mb-4">
+                <div class="cyber-avatar">
+                    <span>{{ user.name[0].upper() }}</span>
+                </div>
+                
+                <div class="flex-grow-1">
+                    <h2 class="username">{{ user.name }}</h2>
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Email</span>
+                            <span class="stat-value">{{ user.email }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Score</span>
+                            <span class="stat-value score-highlight">{{ user.score }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Rank</span>
+                            <span class="stat-value rank-highlight">#{{ user.place }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Section -->
+            <div class="mt-5">
+                <h3 class="mb-4">Achievements</h3>
+                <div class="badges-grid">
+                    {% for solve in user.solves %}
+                    <div class="achievement-badge surface-card">
+                        <span class="badge-name">{{ solve.challenge.name }}</span>
+                        <span class="badge-points">{{ solve.challenge.value }}pts</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Activity Section -->
+            <div class="mt-5">
+                <h3 class="mb-4">Recent Activity</h3>
+                <div class="activity-feed">
+                    {% for solve in user.solves|reverse %}
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <span>⚡</span>
+                        </div>
+                        <div class="activity-details">
+                            <span class="activity-text">Solved <strong>{{ solve.challenge.name }}</strong></span>
+                            <span class="activity-time">{{ solve.date | datetimeformat }}</span>
+                        </div>
+                        <div class="activity-points">+{{ solve.challenge.value }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="teams-container">
+    <div class="page-header">
+        <h1>Teams</h1>
+        <div class="header-line"></div>
+    </div>
+
+    <div class="teams-grid">
+        {% for team in teams %}
+        <div class="team-card surface-card">
+            <div>
+                <div class="team-header">
+                    <h3 class="team-name">{{ team.name }}</h3>
+                    <div class="team-rank">
+                        <span class="rank-number">#{{ loop.index }}</span>
+                    </div>
+                </div>
+                
+                <div class="team-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Score</span>
+                        <span class="stat-value score-highlight">{{ team.score }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Members</span>
+                        <span class="stat-value">{{ team.members|length }}</span>
+                    </div>
+                </div>
+                
+                <div class="team-members">
+                    {% for member in team.members %}
+                    <span class="member-tag">{{ member.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.teams-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.team-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.team-rank {
+  background: var(--gradient-primary);
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.team-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.member-tag {
+  padding: 0.25rem 0.75rem;
+  background: rgba(79, 209, 199, 0.1);
+  border: 1px solid var(--accent-teal);
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: var(--accent-teal);
+}
+</style>
+{% endblock %}
