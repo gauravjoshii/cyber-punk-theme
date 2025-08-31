@@ -31,24 +31,8 @@ class ModernTheme {
   }
 
   setupAnimations() {
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-        }
-      });
-    }, observerOptions);
-
-    // Observe elements for animation
-    document.querySelectorAll('.challenge-button, .card, .team-card, .profile-panel').forEach(el => {
-      observer.observe(el);
-    });
+    // Minimal animations - only smooth transitions
+    // No blinking, pulsing, or complex animations
   }
 
   setupInteractions() {
@@ -66,21 +50,22 @@ class ModernTheme {
     // Challenge card interactions
     document.querySelectorAll('.challenge-button').forEach(card => {
       card.addEventListener('click', () => {
-        card.style.transform = 'scale(0.98)';
+        // Simple click feedback without animation
+        card.style.opacity = '0.8';
         setTimeout(() => {
-          card.style.transform = '';
-        }, 150);
+          card.style.opacity = '';
+        }, 100);
       });
     });
 
     // Form focus enhancements
     document.querySelectorAll('.form-control').forEach(input => {
       input.addEventListener('focus', () => {
-        input.parentElement.style.transform = 'scale(1.02)';
+        // Simple focus without scaling
       });
 
       input.addEventListener('blur', () => {
-        input.parentElement.style.transform = 'scale(1)';
+        // Simple blur without scaling
       });
     });
   }

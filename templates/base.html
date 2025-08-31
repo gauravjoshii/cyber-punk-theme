@@ -37,25 +37,26 @@
     {{ Configs.theme_header }}
 </head>
 <body class="modern-body">
+    <div class="main-wrapper">
+        {% include "components/navbar.html" %}
     
-    {% include "components/navbar.html" %}
+        <!-- Main Content -->
+        <main role="main" class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
 
-    <!-- Main Content -->
-    <main role="main" class="main-content">
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    <!-- Footer -->
-    <footer class="cyber-footer">
-        <div class="container">
-            <div class="footer-text">
-                <span>{{ Configs.ctf_name }}</span>
-                <span> | </span>
-                <span>2025</span>
+        <!-- Footer -->
+        <footer class="cyber-footer">
+            <div class="container">
+                <div class="footer-text">
+                    <span>{{ Configs.ctf_name }}</span>
+                    <span> | </span>
+                    <span>2025</span>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <!-- JavaScript -->
     <script defer src="{{ url_for('views.themes', path='js/vendor.bundle.js') }}"></script>

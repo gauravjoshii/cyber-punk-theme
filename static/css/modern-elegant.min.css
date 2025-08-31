@@ -63,6 +63,9 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Remove old cyberpunk styling */
@@ -78,6 +81,17 @@ body {
 
 .cyber-body {
   background: var(--primary-dark) !important;
+}
+
+/* Main content wrapper */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 /* Modern Background */
@@ -304,10 +318,7 @@ p {
 .jumbotron h1 {
   font-size: 3rem;
   font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
   margin-bottom: var(--space-4);
 }
 
@@ -428,18 +439,6 @@ p {
   color: var(--text-primary);
   margin-bottom: var(--space-6);
   padding-bottom: var(--space-3);
-  border-bottom: 2px solid var(--accent-teal);
-  position: relative;
-}
-
-.category-header h3::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 60px;
-  height: 2px;
-  background: var(--gradient-primary);
 }
 
 /* Modal Styling */
@@ -479,10 +478,7 @@ p {
 .challenge-name {
   font-size: 1.75rem;
   font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .challenge-value {
@@ -597,38 +593,8 @@ p {
 .page-header h1 {
   font-size: 3rem;
   font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
   margin-bottom: var(--space-4);
-}
-
-.header-line {
-  width: 80px;
-  height: 3px;
-  background: var(--gradient-primary);
-  margin: 0 auto;
-  border-radius: var(--radius-sm);
-}
-
-/* Override old neon title styling */
-.scoreboard-neon-title {
-  font-size: 3rem !important;
-  font-weight: 700 !important;
-  background: var(--gradient-primary) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  text-shadow: none !important;
-  animation: none !important;
-  letter-spacing: normal !important;
-  text-transform: none !important;
-}
-
-.scoreboard-neon-title::before,
-.scoreboard-neon-title::after {
-  display: none !important;
 }
 
 /* Container Improvements */
@@ -733,10 +699,7 @@ p {
 .hero-title {
   font-size: 3.5rem;
   font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
   margin-bottom: var(--space-6);
   line-height: 1.1;
 }
@@ -856,7 +819,7 @@ p {
   background: var(--surface);
   border-top: 1px solid var(--border);
   padding: var(--space-8) 0;
-  margin-top: var(--space-16);
+  margin-top: auto;
 }
 
 .footer-text {
@@ -982,14 +945,6 @@ p {
 *:focus {
   outline: 2px solid var(--accent-teal);
   outline-offset: 2px;
-}
-
-/* Utility Classes */
-.text-gradient {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .surface-card {
@@ -1131,15 +1086,46 @@ p {
 
 /* Remove old glitch and neon effects */
 .glitch-text,
-.neon-text {
+.neon-text,
+.cyber-text,
+.glow-text {
   animation: none !important;
   text-shadow: none !important;
   color: var(--text-primary) !important;
 }
 
 .glitch-text::before,
-.glitch-text::after {
+.glitch-text::after,
+.neon-text::before,
+.neon-text::after {
   display: none !important;
+}
+
+/* Remove all animations and effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Disable all blinking, pulsing, and glowing animations */
+*,
+*::before,
+*::after {
+  animation: none !important;
+  text-shadow: none !important;
+}
+
+.blink,
+.pulse,
+.glow,
+.flicker {
+  animation: none !important;
 }
 
 /* Smooth transitions for all interactive elements */
@@ -1156,8 +1142,8 @@ a, button, input, select, textarea {
 
 /* Modern spacing for main content */
 .main-content {
-  margin-top: 80px;
   padding: var(--space-8) 0;
+  flex: 1;
 }
 
 /* Clean up old cyber styling */
