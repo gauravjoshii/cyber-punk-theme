@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="modern-landing">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="hero-content">
+                        <h1 class="hero-title">{{ config['ctf_name'] or 'CyberNeon CTF' }}</h1>
+                        <p class="hero-subtitle">Experience the next generation of capture the flag competitions</p>
+                        <div class="hero-actions">
+                            {% if not request.view_args.get('target_user') %}
+                                {% if session['id'] %}
+                                    <a href="{{ url_for('challenges.listing') }}" class="btn btn-primary btn-hero">Start Challenges</a>
+                                    <a href="{{ url_for('scoreboard.listing') }}" class="btn btn-outline-light btn-hero">View Scoreboard</a>
+                                {% else %}
+                                    <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-hero">Get Started</a>
+                                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-hero">Sign In</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure Challenges</h3>
+                        <p>Experience carefully crafted security challenges across multiple domains</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Real-time Scoring</h3>
+                        <p>Track your progress with live leaderboards and dynamic scoring</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Team Competition</h3>
+                        <p>Collaborate with teammates or compete as an individual hacker</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section (for custom page content) -->
+    {% if content %}
+    <section class="content-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="content-wrapper">
+                        {{ content | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}

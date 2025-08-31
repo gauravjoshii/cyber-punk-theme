@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="page-header">
+        <h1 class="glitch-text cyber-title" data-text="Profile">Profile</h1>
+        <div class="header-line"></div>
+    </div>
+
+    <div class="profile-content">
+        <!-- User Info Panel -->
+        <div class="profile-panel user-info">
+            <div class="panel-glow"></div>
+            <div class="panel-content">
+                <div class="avatar-section">
+                    <div class="cyber-avatar">
+                        <div class="avatar-glow"></div>
+                        <span class="avatar-text">{{ user.name[0].upper() }}</span>
+                    </div>
+                </div>
+                
+                <div class="user-details">
+                    <h2 class="username neon-text">{{ user.name }}</h2>
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Email</span>
+                            <span class="stat-value">{{ user.email }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Score</span>
+                            <span class="stat-value score-highlight">{{ user.score }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Rank</span>
+                            <span class="stat-value rank-highlight">#{{ user.place }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Panel -->
+        <div class="profile-panel achievements">
+            <div class="panel-glow"></div>
+            <div class="panel-content">
+                <h3 class="panel-title">Achievements</h3>
+                <div class="badges-grid">
+                    {% for solve in user.solves %}
+                    <div class="achievement-badge">
+                        <div class="badge-glow"></div>
+                        <div class="badge-content">
+                            <span class="badge-name">{{ solve.challenge.name }}</span>
+                            <span class="badge-points">{{ solve.challenge.value }}pts</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Panel -->
+        <div class="profile-panel activity">
+            <div class="panel-glow"></div>
+            <div class="panel-content">
+                <h3 class="panel-title">Recent Activity</h3>
+                <div class="activity-feed">
+                    {% for solve in user.solves|reverse %}
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <span>⚡</span>
+                        </div>
+                        <div class="activity-details">
+                            <span class="activity-text">Solved <strong>{{ solve.challenge.name }}</strong></span>
+                            <span class="activity-time">{{ solve.date | datetimeformat }}</span>
+                        </div>
+                        <div class="activity-points">+{{ solve.challenge.value }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} - {% endif %}{{ Configs.ctf_name }}</title>
+    <link rel="shortcut icon" href="{{ Configs.ctf_small_icon }}" type="image/x-icon">
+    
+    <!-- Core CTFd styles -->
+    <link rel="stylesheet" href="{{ url_for('views.themes', path='css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('views.themes', path='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('views.themes', path='css/core.css') }}">
+    
+    <!-- Cyberneon styling -->
+    <link rel="stylesheet" href="{{ url_for('views.themes', path='css/cyberneon.min.css') }}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    {% block stylesheets %}{% endblock %}
+    
+    {{ Plugins.styles }}
+    <script type="text/javascript">
+        var init = {
+            'urlRoot': "{{ request.script_root }}",
+            'csrfNonce': "{{ Session.nonce }}",
+            'userMode': "{{ Configs.user_mode }}",
+            'userId': {{ Session.id }},
+            'start': {{ Configs.start | tojson }},
+            'end': {{ Configs.end | tojson }},
+            'theme_settings': {{ Configs.theme_settings | tojson }}
+        }
+    </script>
+    {{ Configs.theme_header }}
+</head>
+<body class="cyber-body">
+    <!-- Animated Background -->
+    <div class="cyber-bg">
+        <div class="particle-network"></div>
+        <div class="grid-overlay"></div>
+        <div class="neural-connections"></div>
+        <div class="floating-particles"></div>
+    </div>
+    
+    {% include "components/navbar.html" %}
+
+    <!-- Main Content -->
+    <main role="main" class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="cyber-footer">
+        <div class="footer-container">
+            <div class="footer-text">
+                <span class="scoreboard-neon-title">{{ Configs.ctf_name }}</span>
+                <span class="footer-separator">|</span>
+                <a href="https://icims.com" class="text-secondary">
+                    <span>2025</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('views.themes', path='js/cyberneon.min.js') }}"></script>
+    
+    <script defer src="{{ url_for('views.themes', path='js/vendor.bundle.js') }}"></script>
+    <script defer src="{{ url_for('views.themes', path='js/core.js') }}"></script>
+    <script defer src="{{ url_for('views.themes', path='js/helpers.js') }}"></script>
+    
+    {% block entrypoint %}
+    <script defer src="{{ url_for('views.themes', path='js/pages/main.js') }}"></script>
+    {% endblock %}
+    
+    {% block scripts %}{% endblock %}
+    
+    {{ Plugins.scripts }}
+    {{ Configs.theme_footer }}
+</body>
+</html>
