@@ -1,7 +1,7 @@
 {
-  "name": "CyberNeon",
-  "version": "1.1.0",
-  "description": "A cyberpunk-inspired theme for CTFd with neon aesthetics, futuristic animations, and full CTFd functionality based on Pixo theme",
-  "author": "Based on Pixo by PRI4CE, styled by Bolt AI",
+  "name": "Modern Elegant",
+  "version": "2.0.0",
+  "description": "A modern, elegant theme for CTFd with gradient-based colors, clean typography, and sophisticated design while maintaining full CTFd functionality",
+  "author": "Based on Pixo by PRI4CE, redesigned by Bolt AI",
   "license": "MIT"
 }

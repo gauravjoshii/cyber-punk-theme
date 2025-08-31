@@ -8,16 +8,16 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="hero-content">
-                        <h1 class="hero-title">{{ config['ctf_name'] or 'CyberNeon CTF' }}</h1>
-                        <p class="hero-subtitle">Experience the next generation of capture the flag competitions</p>
+                        <h1 class="hero-title">{{ Configs.ctf_name or 'Modern CTF Platform' }}</h1>
+                        <p class="hero-subtitle">Enhance your cybersecurity skills through hands-on challenges designed for all skill levels</p>
                         <div class="hero-actions">
                             {% if not request.view_args.get('target_user') %}
                                 {% if session['id'] %}
-                                    <a href="{{ url_for('challenges.listing') }}" class="btn btn-primary btn-hero">Start Challenges</a>
+                                    <a href="{{ url_for('challenges.listing') }}" class="btn btn-primary btn-hero">Get Started</a>
                                     <a href="{{ url_for('scoreboard.listing') }}" class="btn btn-outline-light btn-hero">View Scoreboard</a>
                                 {% else %}
                                     <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-hero">Get Started</a>
-                                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-hero">Sign In</a>
+                                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-hero">Already Registered?</a>
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -34,10 +34,10 @@
                 <div class="col-md-4 text-center">
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-comments"></i>
                         </div>
-                        <h3>Secure Challenges</h3>
-                        <p>Experience carefully crafted security challenges across multiple domains</p>
+                        <h3>Interactive Learning</h3>
+                        <p>Engage with hands-on cybersecurity challenges designed for practical skill development</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
@@ -45,8 +45,8 @@
                         <div class="feature-icon">
                             <i class="fas fa-trophy"></i>
                         </div>
-                        <h3>Real-time Scoring</h3>
-                        <p>Track your progress with live leaderboards and dynamic scoring</p>
+                        <h3>Competitive Scoring</h3>
+                        <p>Track your progress with live leaderboards and dynamic scoring systems</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
@@ -54,8 +54,8 @@
                         <div class="feature-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h3>Team Competition</h3>
-                        <p>Collaborate with teammates or compete as an individual hacker</p>
+                        <h3>Team Collaboration</h3>
+                        <p>Work together with teammates or compete individually in cybersecurity challenges</p>
                     </div>
                 </div>
             </div>
